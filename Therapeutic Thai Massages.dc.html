@@ -30,11 +30,15 @@ input,select,textarea,button{font-family:inherit;}
   </div>
   </div>
   <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
-    <nav style="display:flex;align-items:center;gap:36px;">
+    <nav style="display:flex;align-items:center;gap:36px;flex-shrink:0;">
       <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="4">
-        <span onClick="{{ item.onClick }}" style="cursor:pointer;font-size:12px;letter-spacing:3px;color:{{ item.color }};border-bottom:1px solid {{ item.line }};padding-bottom:4px;" style-hover="color:#ffffff;">{{ item.label }}</span>
+        <sc-if value="{{ item.isCta }}" hint-placeholder-val="{{ false }}">
+          <span onClick="{{ item.onClick }}" style="cursor:pointer;background:{{ item.bg }};padding:12px 22px;font-size:12px;letter-spacing:3px;color:#1f1813;white-space:nowrap;flex-shrink:0;" style-hover="background:#ffffff;">{{ item.label }}</span>
+        </sc-if>
+        <sc-if value="{{ item.isText }}" hint-placeholder-val="{{ true }}">
+          <span onClick="{{ item.onClick }}" style="cursor:pointer;font-size:12px;letter-spacing:3px;color:{{ item.color }};border-bottom:1px solid {{ item.line }};padding-bottom:4px;white-space:nowrap;" style-hover="color:#ffffff;">{{ item.label }}</span>
+        </sc-if>
       </sc-for>
-      <span onClick="{{ goBook }}" style="cursor:pointer;font-size:12px;letter-spacing:3px;color:#1f1813;background:#e9d9bc;padding:12px 22px;" style-hover="background:#ffffff;">BOOK NOW</span>
     </nav>
   </sc-if>
   <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
@@ -59,7 +63,6 @@ input,select,textarea,button{font-family:inherit;}
       <sc-for list="{{ navLinks }}" as="item" hint-placeholder-count="4">
         <span onClick="{{ item.onClick }}" style="cursor:pointer;font-family:'Cormorant Garamond',serif;font-size:44px;color:#f1e6d2;">{{ item.name }}</span>
       </sc-for>
-      <span onClick="{{ goBook }}" style="cursor:pointer;margin-top:16px;text-align:center;font-size:13px;letter-spacing:4px;color:#1f1813;background:#e9d9bc;padding:18px;">BOOK A SESSION</span>
     </div>
   </div>
 </sc-if>
@@ -72,13 +75,13 @@ input,select,textarea,button{font-family:inherit;}
         <image-slot id="hero-a-bg" shape="rect" src="images/1696841212541-449ca29397cc.jpg" placeholder="Warm candlelit treatment room"></image-slot>
       </div>
       <div style="position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% 50%, rgba(60,40,22,0.62), rgba(40,28,18,0.35) 75%), linear-gradient(180deg,rgba(31,24,19,0.55) 0%,rgba(80,55,30,0.25) 60%,rgba(31,24,19,0.15) 100%);pointer-events:none;"></div>
-      <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:32px;max-width:860px;transform:translateX(calc(-1 * clamp(0px, 6vw - 34px, 80px)));">
+      <div style="position:relative;display:flex;flex-direction:column;align-items:center;gap:32px;max-width:860px;transform:translateX(clamp(-34px, calc(650px - 100vw), 0px));">
         <span style="font-size:13px;letter-spacing:7px;color:#efe2c9;">SERENITY THERAPEUTIC MASSAGE &amp; SPA</span>
         <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(52px,9vw,112px);line-height:1;color:#f6ecd9;letter-spacing:0.5px;text-wrap:balance;">Release What You Carry</h1>
         <p style="margin:0;font-size:clamp(17px,2vw,21px);line-height:1.7;color:#f1e6d2;max-width:620px;text-wrap:pretty;">Traditional Thai bodywork that stretches, presses and restores. Come in tense, leave lighter, and remember how it feels to move freely.</p>
         <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:16px;margin-top:16px;">
           <span onClick="{{ goServices }}" style="cursor:pointer;border:1px solid rgba(241,230,210,0.7);padding:22px 44px;font-size:13px;letter-spacing:5px;color:#f6ecd9;" style-hover="background:rgba(246,236,217,0.12);">EXPLORE OUR SERVICES</span>
-          <span onClick="{{ goBook }}" style="cursor:pointer;background:#f1e6d2;padding:22px 44px;font-size:13px;letter-spacing:5px;color:#1f1813;" style-hover="background:#ffffff;">BOOK A SESSION</span>
+          <span onClick="{{ goContact }}" style="cursor:pointer;background:#f1e6d2;padding:22px 44px;font-size:13px;letter-spacing:5px;color:#1f1813;" style-hover="background:#ffffff;">BOOK A SESSION</span>
         </div>
       </div>
       <span style="position:absolute;bottom:36px;left:0;right:0;text-align:center;font-size:12px;letter-spacing:5px;color:#d9c7a8;">SCROLL</span>
@@ -92,7 +95,7 @@ input,select,textarea,button{font-family:inherit;}
         <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(52px,7.5vw,104px);line-height:0.98;color:#f6ecd9;">Ancient hands,<br><em style="font-style:italic;color:#e3c48f;">modern relief.</em></h1>
         <p style="margin:0;font-size:19px;line-height:1.7;color:#d9c7a8;max-width:480px;text-wrap:pretty;">Assisted stretching and rhythmic pressure along the body's energy lines. Every session is shaped around where you hold tension.</p>
         <div style="display:flex;flex-wrap:wrap;gap:16px;margin-top:8px;">
-          <span onClick="{{ goBook }}" style="cursor:pointer;background:#e9d9bc;padding:20px 40px;font-size:13px;letter-spacing:5px;color:#1f1813;" style-hover="background:#ffffff;">BOOK A SESSION</span>
+          <span onClick="{{ goContact }}" style="cursor:pointer;background:#e9d9bc;padding:20px 40px;font-size:13px;letter-spacing:5px;color:#1f1813;" style-hover="background:#ffffff;">BOOK A SESSION</span>
           <span onClick="{{ goServices }}" style="cursor:pointer;border:1px solid #6b5a46;padding:20px 40px;font-size:13px;letter-spacing:5px;color:#f1e6d2;" style-hover="border-color:#c9a46a;">VIEW MENU</span>
         </div>
       </div>
@@ -126,7 +129,7 @@ input,select,textarea,button{font-family:inherit;}
             <span style="font-size:11px;letter-spacing:4px;color:#c9a46a;">FROM</span>
             <span style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#f1e6d2;">{{ quickFrom }}</span>
           </div>
-          <span onClick="{{ quickGo }}" style="flex:1 1 180px;cursor:pointer;background:#e9d9bc;color:#1f1813;display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:5px;padding:22px;" style-hover="background:#ffffff;">CHECK TIMES</span>
+          <span onClick="{{ goContact }}" style="flex:1 1 180px;cursor:pointer;background:#e9d9bc;color:#1f1813;display:flex;align-items:center;justify-content:center;font-size:13px;letter-spacing:5px;padding:22px;" style-hover="background:#ffffff;">CHECK TIMES</span>
         </div>
       </div>
     </section>
@@ -209,11 +212,15 @@ input,select,textarea,button{font-family:inherit;}
               <span style="font-family:'Cormorant Garamond',serif;font-size:24px;">{{ o.priceLabel }}</span>
             </div>
           </sc-for>
-          <span onClick="{{ s.book }}" style="cursor:pointer;align-self:flex-start;margin-top:10px;font-size:12px;letter-spacing:4px;color:#1f1813;border:1px solid #1f1813;padding:14px 26px;" style-hover="background:#1f1813;color:#f1e6d2;">BOOK THIS</span>
+          <span onClick="{{ goContact }}" style="cursor:pointer;align-self:flex-start;margin-top:10px;font-size:12px;letter-spacing:4px;color:#1f1813;border:1px solid #1f1813;padding:14px 26px;" style-hover="background:#1f1813;color:#f1e6d2;">BOOK THIS</span>
         </div>
       </div>
     </sc-for>
-    <div style="margin-top:64px;background:#ebe2d3;padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:24px;">
+    <div style="margin-top:64px;border:1px solid #b5a48c;padding:clamp(24px,3.5vw,40px);display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px;">
+      <span style="font-size:12px;letter-spacing:6px;color:#8a6a3c;">PACKAGES</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3vw,34px);color:#1f1813;">Packages of the same service buy 5 get 1 free</span>
+    </div>
+    <div style="margin-top:24px;background:#ebe2d3;padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;gap:24px;">
       <span style="font-size:12px;letter-spacing:6px;color:#8a6a3c;">ADD ON</span>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:16px 48px;">
         <sc-for list="{{ addons }}" as="a" hint-placeholder-count="4">
@@ -269,131 +276,10 @@ input,select,textarea,button{font-family:inherit;}
   </section>
 </sc-if>
 
-<sc-if value="{{ pageBook }}" hint-placeholder-val="{{ false }}">
-  <section data-screen-label="Booking" style="background:#1f1813;color:#f1e6d2;padding:170px clamp(20px,5vw,64px) 110px;min-height:100vh;">
-    <div style="max-width:1320px;margin:0 auto;display:flex;flex-direction:column;gap:48px;">
-      <div style="display:flex;flex-direction:column;gap:20px;">
-        <span style="font-size:12px;letter-spacing:6px;color:#c9a46a;">RESERVE</span>
-        <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(46px,7vw,84px);line-height:1;color:#f6ecd9;">Book a session</h1>
-        <div style="display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:12px;">
-          <sc-for list="{{ stepTabs }}" as="t" hint-placeholder-count="3">
-            <span onClick="{{ t.onClick }}" style="cursor:{{ t.cursor }};font-size:12px;letter-spacing:4px;color:{{ t.color }};padding-bottom:8px;border-bottom:1px solid {{ t.line }};">{{ t.label }}</span>
-          </sc-for>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:48px;align-items:start;">
-        <div style="grid-column:span {{ mainSpan }};display:flex;flex-direction:column;gap:40px;">
-
-          <sc-if value="{{ step1 }}" hint-placeholder-val="{{ true }}">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px;">
-              <sc-for list="{{ bServices }}" as="s" hint-placeholder-count="6">
-                <div onClick="{{ s.onClick }}" style="cursor:pointer;border:1px solid {{ s.border }};background:{{ s.bg }};padding:26px;display:flex;flex-direction:column;gap:10px;" style-hover="border-color:#c9a46a;">
-                  <span style="font-family:'Cormorant Garamond',serif;font-size:26px;color:#f6ecd9;">{{ s.name }}</span>
-                  <span style="font-size:15px;line-height:1.6;color:#cdbfa8;">{{ s.short }}</span>
-                  <span style="font-size:14px;letter-spacing:2px;color:#c9a46a;margin-top:4px;">{{ s.from }}</span>
-                </div>
-              </sc-for>
-            </div>
-          </sc-if>
-
-          <sc-if value="{{ step2 }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;flex-direction:column;gap:40px;">
-              <div style="display:flex;flex-direction:column;gap:16px;">
-                <span style="font-size:12px;letter-spacing:4px;color:#c9a46a;">DURATION</span>
-                <div style="display:flex;flex-wrap:wrap;gap:12px;">
-                  <sc-for list="{{ durOptions }}" as="d" hint-placeholder-count="2">
-                    <span onClick="{{ d.onClick }}" style="cursor:pointer;min-width:140px;padding:16px 22px;border:1px solid {{ d.border }};background:{{ d.bg }};color:{{ d.color }};display:flex;justify-content:space-between;gap:18px;font-size:16px;">
-                      <span>{{ d.label }}</span><span>{{ d.priceLabel }}</span>
-                    </span>
-                  </sc-for>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:16px;">
-                <span style="font-size:12px;letter-spacing:4px;color:#c9a46a;">DATE</span>
-                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:10px;">
-                  <sc-for list="{{ dateOptions }}" as="d" hint-placeholder-count="10">
-                    <div onClick="{{ d.onClick }}" style="cursor:pointer;padding:14px 6px;border:1px solid {{ d.border }};background:{{ d.bg }};color:{{ d.color }};display:flex;flex-direction:column;align-items:center;gap:4px;">
-                      <span style="font-size:11px;letter-spacing:3px;">{{ d.dow }}</span>
-                      <span style="font-family:'Cormorant Garamond',serif;font-size:28px;line-height:1;">{{ d.day }}</span>
-                      <span style="font-size:11px;letter-spacing:2px;">{{ d.mon }}</span>
-                    </div>
-                  </sc-for>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:16px;">
-                <span style="font-size:12px;letter-spacing:4px;color:#c9a46a;">TIME</span>
-                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;">
-                  <sc-for list="{{ timeOptions }}" as="t" hint-placeholder-count="10">
-                    <span onClick="{{ t.onClick }}" style="cursor:{{ t.cursor }};padding:14px 6px;text-align:center;font-size:15px;border:1px solid {{ t.border }};background:{{ t.bg }};color:{{ t.color }};text-decoration:{{ t.deco }};">{{ t.label }}</span>
-                  </sc-for>
-                </div>
-              </div>
-            </div>
-          </sc-if>
-
-          <sc-if value="{{ step3 }}" hint-placeholder-val="{{ false }}">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:24px;">
-              <label style="display:flex;flex-direction:column;gap:10px;font-size:12px;letter-spacing:4px;color:#c9a46a;">FULL NAME
-                <input value="{{ form.name }}" onChange="{{ setName }}" placeholder="Your name" style="background:transparent;border:none;border-bottom:1px solid #6b5a46;color:#f6ecd9;font-size:18px;padding:10px 0;outline:none;letter-spacing:0;">
-              </label>
-              <label style="display:flex;flex-direction:column;gap:10px;font-size:12px;letter-spacing:4px;color:#c9a46a;">PHONE
-                <input value="{{ form.phone }}" onChange="{{ setPhone }}" placeholder="(555) 000-0000" style="background:transparent;border:none;border-bottom:1px solid #6b5a46;color:#f6ecd9;font-size:18px;padding:10px 0;outline:none;letter-spacing:0;">
-              </label>
-              <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:10px;font-size:12px;letter-spacing:4px;color:#c9a46a;">EMAIL
-                <input value="{{ form.email }}" onChange="{{ setEmail }}" placeholder="you@email.com" style="background:transparent;border:none;border-bottom:1px solid #6b5a46;color:#f6ecd9;font-size:18px;padding:10px 0;outline:none;letter-spacing:0;">
-              </label>
-              <label style="grid-column:1 / -1;display:flex;flex-direction:column;gap:10px;font-size:12px;letter-spacing:4px;color:#c9a46a;">ANYTHING WE SHOULD KNOW?
-                <textarea value="{{ form.notes }}" onChange="{{ setNotes }}" rows="3" placeholder="Injuries, pressure preference, areas to focus on" style="background:transparent;border:1px solid #6b5a46;color:#f6ecd9;font-size:17px;padding:14px;outline:none;resize:vertical;letter-spacing:0;line-height:1.6;"></textarea>
-              </label>
-            </div>
-          </sc-if>
-
-          <sc-if value="{{ step4 }}" hint-placeholder-val="{{ false }}">
-            <div style="display:flex;flex-direction:column;gap:22px;border:1px solid #6b5a46;padding:clamp(28px,5vw,56px);">
-              <span style="font-size:12px;letter-spacing:6px;color:#c9a46a;">CONFIRMED</span>
-              <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(36px,5vw,54px);line-height:1.1;color:#f6ecd9;">Thank you, {{ firstName }}. We'll see you soon.</h2>
-              <p style="margin:0;font-size:18px;line-height:1.75;color:#cdbfa8;max-width:560px;">Please arrive 10 minutes early so we can go over your intake and settle you in with a cup of tea.</p>
-              <span onClick="{{ resetBooking }}" style="cursor:pointer;align-self:flex-start;margin-top:8px;font-size:12px;letter-spacing:4px;color:#f1e6d2;border-bottom:1px solid #f1e6d2;padding-bottom:6px;">BOOK ANOTHER</span>
-            </div>
-          </sc-if>
-
-          <sc-if value="{{ showNav }}" hint-placeholder-val="{{ true }}">
-            <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-              <sc-if value="{{ canBack }}" hint-placeholder-val="{{ false }}">
-                <span onClick="{{ back }}" style="cursor:pointer;padding:18px 34px;border:1px solid #6b5a46;font-size:13px;letter-spacing:4px;color:#f1e6d2;">BACK</span>
-              </sc-if>
-              <span onClick="{{ next }}" style="cursor:{{ nextCursor }};padding:18px 40px;background:{{ nextBg }};color:#1f1813;font-size:13px;letter-spacing:4px;">{{ nextLabel }}</span>
-              <span style="font-size:14px;color:#9a8b78;">{{ hint }}</span>
-            </div>
-          </sc-if>
-        </div>
-
-        <aside style="background:#2a211a;padding:32px;display:flex;flex-direction:column;gap:20px;">
-          <span style="font-size:12px;letter-spacing:4px;color:#c9a46a;">YOUR APPOINTMENT</span>
-          <div style="display:flex;flex-direction:column;gap:16px;">
-            <sc-for list="{{ summary }}" as="r" hint-placeholder-count="4">
-              <div style="display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid #3d3127;padding-bottom:14px;font-size:16px;">
-                <span style="color:#9a8b78;">{{ r.k }}</span>
-                <span style="color:#f1e6d2;text-align:right;">{{ r.v }}</span>
-              </div>
-            </sc-for>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:baseline;">
-            <span style="font-size:13px;letter-spacing:3px;color:#cdbfa8;">TOTAL</span>
-            <span style="font-family:'Cormorant Garamond',serif;font-size:36px;color:#f6ecd9;">{{ total }}</span>
-          </div>
-          <span style="font-size:14px;line-height:1.6;color:#9a8b78;">Free cancellation up to 24 hours before your appointment. Payment is taken in the studio.</span>
-        </aside>
-      </div>
-    </div>
-  </section>
-</sc-if>
-
 <sc-if value="{{ pageContact }}" hint-placeholder-val="{{ false }}">
   <section data-screen-label="Contact header" style="background:#1f1813;padding:200px clamp(20px,5vw,64px) 90px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;">
     <span style="font-size:12px;letter-spacing:6px;color:#c9a46a;">VISIT</span>
-    <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(52px,8vw,96px);line-height:1;color:#f6ecd9;">Find us</h1>
+    <h1 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(52px,8vw,96px);line-height:1;color:#f6ecd9;">Call us now</h1>
   </section>
   <section style="padding:clamp(70px,9vw,120px) clamp(20px,5vw,64px);max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(40px,6vw,96px);">
     <div style="display:flex;flex-direction:column;gap:40px;">
@@ -437,7 +323,7 @@ input,select,textarea,button{font-family:inherit;}
 <sc-if value="{{ showCta }}" hint-placeholder-val="{{ true }}">
   <section style="position:relative;overflow:hidden;padding:clamp(90px,12vw,160px) 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;background:radial-gradient(ellipse 45% 70% at 50% 110%, rgba(214,150,80,0.55), transparent 70%), #2a211a;">
     <h2 style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(44px,7vw,84px);line-height:1.05;color:#f6ecd9;text-wrap:balance;">Your hour of stillness is waiting</h2>
-    <span onClick="{{ goBook }}" style="cursor:pointer;border:1px solid rgba(241,230,210,0.7);padding:22px 48px;font-size:13px;letter-spacing:5px;color:#f6ecd9;" style-hover="background:rgba(246,236,217,0.12);">BOOK A SESSION</span>
+    <span onClick="{{ goContact }}" style="cursor:pointer;border:1px solid rgba(241,230,210,0.7);padding:22px 48px;font-size:13px;letter-spacing:5px;color:#f6ecd9;" style-hover="background:rgba(246,236,217,0.12);">BOOK A SESSION</span>
   </section>
 </sc-if>
 
@@ -482,16 +368,14 @@ const SERVICES = [
   { id: 'trigger', name: 'Trigger Point Therapy', thai: 'Therapeutic', short: 'Focused pressure on knots and the referral points that cause pain.', opts: [[60, 170], [90, 250]] },
   { id: 'prenatal', name: 'Prenatal Massage', thai: 'Pre & post-natal', short: 'Gentle, supported positioning for comfort during pregnancy.', opts: [[60, 150], [90, 200]] },
   { id: 'foot', name: 'Reflexology Foot Massage', thai: 'Reflexology', short: 'Pressure on reflex points of the feet to restore balance.', opts: [[30, 70], [60, 120]] },
+  { id: 'royal', name: 'Advance Royal Thai Massage', thai: 'Master · Applied Thai Traditional Medicine', short: 'The refined royal style of Thai massage, performed with precise pressure along the energy lines.', opts: [[60, 180], [90, 280], [120, 350]] },
+  { id: 'lymph', name: 'Lymphatic Therapy', thai: 'Post or recovery surgery', short: 'Gentle, rhythmic work that supports lymph flow and recovery after surgery.', opts: [[30, 80], [60, 160], [90, 229], [120, 270]] },
+  { id: 'tmj', name: 'TMJ Session', thai: 'Jaw & face', short: 'Focused release for the jaw, face and neck to ease clenching and TMJ discomfort.', opts: [[60, 170], [90, 220]] },
   { id: 'relax', name: 'Relax & Go', thai: 'Express', short: 'A short reset when time is tight.', opts: [[30, 70]] }
 ].map(s => ({ ...s, desc: s.short, opts: s.opts.map(([min, price]) => ({ min, price, label: min + ' minutes', priceLabel: '$' + price })), from: 'from $' + Math.min(...s.opts.map(o => o[1])) }));
 
-const TIMES = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
-const fmtTime = t => { const [h] = t.split(':').map(Number); return (h > 12 ? h - 12 : h) + ':00 ' + (h >= 12 ? 'PM' : 'AM'); };
-const DOW = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-const MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
 class Component extends DCLogic {
-  state = { page: 'home', menuOpen: false, w: typeof window !== 'undefined' ? window.innerWidth : 1200, step: 1, sId: null, dur: null, date: null, time: null, form: { name: '', phone: '', email: '', notes: '' }, faq: 0, quickId: 'eastwest' };
+  state = { page: 'home', menuOpen: false, w: typeof window !== 'undefined' ? window.innerWidth : 1200, faq: 0, quickId: 'eastwest' };
   componentDidMount() { this.onR = () => this.setState({ w: window.innerWidth }); window.addEventListener('resize', this.onR); }
   componentWillUnmount() { window.removeEventListener('resize', this.onR); }
   go(page) { this.setState({ page, menuOpen: false }); window.scrollTo(0, 0); }
@@ -499,16 +383,7 @@ class Component extends DCLogic {
     const s = this.state;
     const hero = this.props.hero ?? 'Candlelit (centered)';
     const isMobile = s.w < 820;
-    const svc = SERVICES.find(x => x.id === s.sId);
-    const dur = svc && svc.opts.find(o => o.min === s.dur);
-    const days = [];
-    const today = new Date(); today.setHours(0, 0, 0, 0);
-    for (let i = 1; days.length < 10; i++) { const d = new Date(today); d.setDate(today.getDate() + i); if (d.getDay() !== 0 && d.getDay() !== 1) days.push(d); }
-    const navDefs = [['home', 'Home'], ['services', 'Services'], ['about', 'About'], ['contact', 'Contact']];
-    const valid = { 1: !!svc, 2: !!(dur && s.date !== null && s.time), 3: !!(s.form.name.trim() && s.form.email.includes('@')) };
-    const setForm = k => e => { const v = e.target.value; this.setState(st => ({ form: { ...st.form, [k]: v } })); };
-    const selDate = s.date !== null ? days[s.date] : null;
-    const gold = '#c9a46a';
+    const navDefs = [['home', 'Home'], ['services', 'Services'], ['about', 'About'], ['contact', 'Book Now']];
     const faqs = [
       ['What should I wear?', 'Wear something comfortable. For oil-based treatments you will undress to your comfort level and be draped at all times.'],
       ['Will the pressure be too strong?', 'It should feel strong but never painful. Your therapist will check in on pressure throughout, and you can ask for lighter or firmer work at any time.'],
@@ -516,21 +391,29 @@ class Component extends DCLogic {
       ['What is your cancellation policy?', 'Cancel or reschedule free of charge up to 24 hours before your appointment. Late cancellations may be charged 50% of the service price.']
     ];
     const addons = [['Cupping', '$25'], ['Hot stone', '$25'], ['CBD oil', '$35'], ['Skull massage', '$30']].map(([n, p]) => ({ n, p }));
-    const stepNames = ['TREATMENT', 'DATE & TIME', 'DETAILS'];
     return {
       isMobile, isDesktop: !isMobile, menuOpen: s.menuOpen,
       toggleMenu: () => this.setState(st => ({ menuOpen: !st.menuOpen })),
-      goHome: () => this.go('home'), goServices: () => this.go('services'), goAbout: () => this.go('about'), goBook: () => this.go('book'),
-      navLinks: navDefs.map(([id, name]) => ({ name, label: name.toUpperCase(), onClick: () => this.go(id), color: s.page === id ? '#ffffff' : '#e3d5bd', line: s.page === id ? '#e3d5bd' : 'transparent' })),
-      pageHome: s.page === 'home', pageServices: s.page === 'services', pageAbout: s.page === 'about', pageBook: s.page === 'book', pageContact: s.page === 'contact',
-      showCta: s.page !== 'book',
+      goHome: () => this.go('home'), goServices: () => this.go('services'), goAbout: () => this.go('about'), goContact: () => this.go('contact'),
+      navLinks: navDefs.map(([id, name]) => ({
+        name,
+        label: id === 'contact' ? 'BOOK NOW' : name.toUpperCase(),
+        isCta: id === 'contact',
+        isText: id !== 'contact',
+        bg: s.page === 'contact' ? '#ffffff' : '#f1e6d2',
+        onClick: () => this.go(id),
+        color: s.page === id ? '#ffffff' : '#e3d5bd',
+        line: s.page === id ? '#e3d5bd' : 'transparent'
+      })),
+      pageHome: s.page === 'home', pageServices: s.page === 'services', pageAbout: s.page === 'about', pageContact: s.page === 'contact',
+      showCta: true,
       heroA: hero === 'Candlelit (centered)', heroB: hero === 'Arched split', heroC: hero === 'Editorial + quick book',
-      services: SERVICES.map(x => ({ ...x, book: () => { this.setState({ sId: x.id, dur: x.opts[0].min, step: 2 }); this.go('book'); } })),
+      services: SERVICES,
       featured: SERVICES.slice(0, 3),
       bServiceId: s.quickId,
       quickService: e => this.setState({ quickId: e.target.value }),
       quickFrom: SERVICES.find(x => x.id === s.quickId).from.replace('from ', ''),
-      quickGo: () => { const x = SERVICES.find(y => y.id === s.quickId); this.setState({ sId: x.id, dur: x.opts[0].min, step: 2 }); this.go('book'); },
+      quickGo: () => this.go('contact'),
       steps: [
         { n: 'i.', title: 'Arrive & unwind', body: 'Come 10 minutes early. We will offer you warm tea and a quiet place to change.' },
         { n: 'ii.', title: 'Brief consultation', body: 'Your therapist asks about injuries, tension and the pressure you prefer.' },
@@ -547,37 +430,7 @@ class Component extends DCLogic {
       addons,
       credentials: ['Applied Thai Traditional Medicine (four-year bachelor’s degree)', 'Massage Therapies', 'Ayurvedic Medicine', 'Thai Herbal Medicine'],
       modalities: ['Thai Therapeutic & Thai Medical Massage', 'Thai Herbal Compress', 'Swedish', 'Deep Tissue', 'Integrated East-West Massage', 'Hot Stone', 'Aromatherapy', 'Sports Massage', 'Orthopedics', 'Pre- & Post-natal', 'Touch Therapy', 'Trigger Point Therapy', 'Myofascial Release', 'Positional Release', 'Sinus & Migraine Relief', 'TMJ Massage', 'Muscle Re-education & Muscle Energy Technique'],
-      faqs: faqs.map(([q, a], i) => ({ q, a, open: s.faq === i, icon: s.faq === i ? '–' : '+', onClick: () => this.setState(st => ({ faq: st.faq === i ? -1 : i })) })),
-      // booking
-      step1: s.step === 1, step2: s.step === 2, step3: s.step === 3, step4: s.step === 4,
-      mainSpan: isMobile ? 1 : 2,
-      stepTabs: stepNames.map((label, i) => {
-        const n = i + 1, reachable = n <= s.step && s.step < 4;
-        return { label: '0' + n + '  ' + label, color: s.step === n ? '#f6ecd9' : (n < s.step ? gold : '#6b5a46'), line: s.step === n ? gold : 'transparent', cursor: reachable ? 'pointer' : 'default', onClick: () => reachable && this.setState({ step: n }) };
-      }),
-      bServices: SERVICES.map(x => ({ ...x, border: s.sId === x.id ? gold : '#3d3127', bg: s.sId === x.id ? '#2e241b' : 'transparent', onClick: () => this.setState({ sId: x.id, dur: x.opts[0].min }) })),
-      durOptions: (svc ? svc.opts : []).map(o => { const on = o.min === s.dur; return { ...o, label: o.min + ' min', border: on ? gold : '#3d3127', bg: on ? '#e9d9bc' : 'transparent', color: on ? '#1f1813' : '#f1e6d2', onClick: () => this.setState({ dur: o.min }) }; }),
-      dateOptions: days.map((d, i) => { const on = s.date === i; return { dow: DOW[d.getDay()], day: d.getDate(), mon: MON[d.getMonth()], border: on ? gold : '#3d3127', bg: on ? '#e9d9bc' : 'transparent', color: on ? '#1f1813' : '#f1e6d2', onClick: () => this.setState({ date: i, time: null }) }; }),
-      timeOptions: TIMES.map((t, j) => {
-        const taken = s.date === null || ((s.date * 3 + j * 7) % 5 === 0); const on = s.time === t;
-        return { label: fmtTime(t), cursor: taken ? 'default' : 'pointer', deco: taken && s.date !== null ? 'line-through' : 'none', border: on ? gold : '#3d3127', bg: on ? '#e9d9bc' : 'transparent', color: on ? '#1f1813' : (taken ? '#5a4b3d' : '#f1e6d2'), onClick: () => !taken && this.setState({ time: t }) };
-      }),
-      form: s.form, setName: setForm('name'), setPhone: setForm('phone'), setEmail: setForm('email'), setNotes: setForm('notes'),
-      firstName: s.form.name.trim().split(' ')[0] || 'friend',
-      showNav: s.step < 4, canBack: s.step > 1,
-      back: () => this.setState(st => ({ step: st.step - 1 })),
-      next: () => valid[s.step] && this.setState(st => ({ step: st.step + 1 })),
-      nextLabel: s.step === 3 ? 'CONFIRM BOOKING' : 'CONTINUE',
-      nextBg: valid[s.step] ? '#e9d9bc' : '#6b5a46', nextCursor: valid[s.step] ? 'pointer' : 'not-allowed',
-      hint: valid[s.step] ? '' : ({ 1: 'Choose a treatment', 2: s.date === null ? 'Pick a date and time' : 'Pick a time', 3: 'Name and email required' })[s.step],
-      resetBooking: () => this.setState({ step: 1, sId: null, dur: null, date: null, time: null, form: { name: '', phone: '', email: '', notes: '' } }),
-      summary: [
-        { k: 'Treatment', v: svc ? svc.name : '—' },
-        { k: 'Duration', v: dur ? dur.min + ' minutes' : '—' },
-        { k: 'Date', v: selDate ? DOW[selDate.getDay()].charAt(0) + DOW[selDate.getDay()].slice(1).toLowerCase() + ', ' + MON[selDate.getMonth()].charAt(0) + MON[selDate.getMonth()].slice(1).toLowerCase() + ' ' + selDate.getDate() : '—' },
-        { k: 'Time', v: s.time ? fmtTime(s.time) : '—' }
-      ],
-      total: dur ? '$' + dur.price : '—'
+      faqs: faqs.map(([q, a], i) => ({ q, a, open: s.faq === i, icon: s.faq === i ? '–' : '+', onClick: () => this.setState(st => ({ faq: st.faq === i ? -1 : i })) }))
     };
   }
 }
