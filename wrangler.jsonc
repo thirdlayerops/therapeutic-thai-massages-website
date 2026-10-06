@@ -1,0 +1,12 @@
+{
+  // Must match the project name shown in Cloudflare under Workers & Pages.
+  "name": "therapeutic-thai-massages-website",
+  "compatibility_date": "2026-10-06",
+  // Runs before every deploy and assembles the site into ./public.
+  "build": {
+    "command": "sh build.sh"
+  },
+  "assets": {
+    "directory": "./public"
+  }
+}
