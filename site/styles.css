@@ -1,0 +1,27 @@
+html,body{margin:0;padding:0;background:#1f1813;}
+*{box-sizing:border-box;}
+a{color:#c9a46a;text-decoration:none;}
+a:hover{color:#f1e6d2;}
+button{font-family:inherit;cursor:pointer;}
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c9a46a;outline-offset:3px;}
+
+/* Hover states */
+.h0:hover{background:#ffffff !important;}
+.h1:hover{color:#ffffff !important;}
+.h2:hover{background:rgba(246,236,217,0.12) !important;}
+.h3:hover{border-color:#c9a46a !important;}
+.h4:hover{color:#8a6a3c !important;border-color:#8a6a3c !important;}
+.h5:hover{background:#1f1813 !important;color:#f1e6d2 !important;}
+.h6:hover{color:#f1e6d2 !important;}
+
+/* Header: full menu on wide screens, menu button on phones */
+.nav-toggle{display:none !important;}
+.mobile-menu{display:none !important;}
+@media (max-width:819.98px){
+  .nav-desktop{display:none !important;}
+  .nav-toggle{display:flex !important;}
+  .mobile-menu.open{display:flex !important;}
+}
+
+/* Questions */
+.faq-item{cursor:pointer;}
